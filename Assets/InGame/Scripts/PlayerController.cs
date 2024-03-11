@@ -59,6 +59,17 @@ public class PlayerController : MonoBehaviour
 
         //anim.transform.rotation = Quaternion.Slerp(anim.transform.rotation, Quaternion.Euler(0, 0, dir - 90f), 0.1f);
         //anim.transform.rotation = Quaternion.Euler(0, 0, Mathf.Lerp(anim.transform.rotation.z, dir - 90f, 0.01f));
+
+        float dir = Mathf.Atan2(input.y, input.x) * Mathf.Rad2Deg;
+
+        Debug.Log(dir);
+
+        //dir = Mathf.Clamp(dir, -90f, 90f);
+
+        spriteRend.flipX = input.x > 0;
+        //dir = input.x < 0 ? dir *= -1 : dir;
+
+        //anim.transform.rotation = Quaternion.Slerp(anim.transform.rotation, Quaternion.Euler(0, 0, -dir), 0.1f);
     }
 
     //y (gravity, jump) => 
