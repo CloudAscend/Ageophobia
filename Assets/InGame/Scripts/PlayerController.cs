@@ -8,9 +8,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Animator anim;
     [SerializeField] private float sensitive = 0.5f;
 
-    private enum MoveState { inWater, onGround, inAir }
+    public enum MoveState { inWater, onGround, inAir }
 
-    private MoveState moveState;
+    public MoveState moveState;
 
     private Rigidbody2D rigidbody;
 
@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 input;
 
-    private bool isGrounded;
+    public bool isGrounded;
 
 
     private SpriteRenderer spriteRend;
@@ -38,26 +38,29 @@ public class PlayerController : MonoBehaviour
 
     private void Movement()
     {
-        input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-
         if (input.magnitude >= sensitive)
             SpriteRotate();
 
-        if (isGrounded)
-            input = new Vector2(input.x, rigidbody.velocity.y);
+        if (!isGrounded)
+            input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")) * moveSpeed;
+        else
+            input = new Vector2(Input.GetAxis("Horizontal") * moveSpeed, rigidbody.velocity.y);
 
-        rigidbody.velocity = input * moveSpeed;
+        rigidbody.velocity = input;
     }    
 
     private void SpriteRotate()
     {
-        float dir = Mathf.Atan2(input.y, input.x) * Mathf.Rad2Deg;
+        //float dir = Mathf.Atan2(input.y, input.x) * Mathf.Rad2Deg;
 
-        Debug.Log(anim.transform.rotation.z * 100);
+        //Debug.Log(anim.transform.rotation.z * 100);
 
-        spriteRend.flipX = Mathf.Abs(anim.transform.rotation.z * 100) > 90f == true;
+        //spriteRend.flipX = Mathf.Abs(anim.transform.rotation.z * 100) > 90f == true;
 
-        anim.transform.rotation = Quaternion.Slerp(anim.transform.rotation, Quaternion.Euler(0, 0, dir + 180f), 0.1f);
+        //anim.transform.rotation = Quaternion.Slerp(anim.transform.rotation, Quaternion.Euler(0, 0, dir - 90f), 0.1f);
         //anim.transform.rotation = Quaternion.Euler(0, 0, Mathf.Lerp(anim.transform.rotation.z, dir - 90f, 0.01f));
     }
+
+    //y (gravity, jump) => 
+    //x (move) == same in water and ground
 }
