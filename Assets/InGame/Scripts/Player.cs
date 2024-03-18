@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public static Player instance; //Temp
+
     public float moveSpeed;
 
     private Vector2 moveVec;
@@ -15,6 +17,8 @@ public class Player : MonoBehaviour
     public bool isMove;
     private void Awake()
     {
+        instance = this;
+
         rigidbody = GetComponent<Rigidbody2D>();
         spriteRend = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
