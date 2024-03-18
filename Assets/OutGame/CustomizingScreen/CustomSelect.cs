@@ -7,12 +7,21 @@ using DG.Tweening;
 public class CustomSelect : MonoBehaviour
 {
     [SerializeField] private Text selectedButton;
-
-    [SerializeField] private Image[] crocodileImage;
-
-    //0(-1000), 1(0), 2(1000) -> 1(-1000), 2(0), 0(1000)
+    [SerializeField] private Transform customs;
+    [SerializeField] private List<CustomBox> customBox; // -> ScriptableObject
 
     //[SerializeField] private [] //CrocodileCustoms -> ScriptableObject
+
+    private float moveDir;
+
+    private void Start()
+    {
+        for (int i = 0; i < customBox.Count; i++)
+        {
+            var box = Instantiate(customBox[i], transform);
+            box.transform.parent = customs;
+        }
+    }
 
     public void OnLeft()
     {
@@ -26,8 +35,17 @@ public class CustomSelect : MonoBehaviour
 
     private void MoveImages(bool isRight)
     {
-        //float movePos
+        moveDir = 1;
 
-        
+        if (isRight) moveDir *= -1;
+
+        for (int i = 0; i < 10; i++)
+            customs.DOMoveX(customs.position.x + moveDir * 10, 0.1f);
+
+        //while (Mathf.Round(customs.position.x) != moveDir)
+        //{
+        //    customs.DOMoveX(customs.position.x + moveDir, 0.1f);
+        //}
+        //Debug.Log(customs.position.x);
     }
 }
