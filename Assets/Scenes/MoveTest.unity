@@ -280,7 +280,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 197288814}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5287.589, y: 3429.3984, z: -0.066036895}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -388,8 +388,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MousePointPos: {fileID: 197288815}
   CurTarget: {fileID: 2023955584}
-  Player_Pos: {fileID: 807177428}
   Player: {fileID: 807177426}
+  Move_speed: 4
 --- !u!50 &807177432
 Rigidbody2D:
   serializedVersion: 4
@@ -603,7 +603,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2023955583}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5287.589, y: 3429.3984, z: -0.066036895}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
